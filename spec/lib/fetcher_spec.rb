@@ -2,8 +2,8 @@ require "spec_helper"
 
 RSpec.describe CurrencyRate::Fetcher do
   before do
-    @usd_try = BigDecimal.new("22")
-    @usd_eur = BigDecimal.new("0.8457")
+    @usd_try = BigDecimal("22")
+    @usd_eur = BigDecimal("0.8457")
     @eur_try = @usd_try / @usd_eur
     @storage_double = double("storage")
     @fetcher = CurrencyRate::Fetcher.new(storage: @storage_double)
@@ -23,7 +23,7 @@ RSpec.describe CurrencyRate::Fetcher do
     before do
       @from = "BTC"
       @to = "ETH"
-      @btc_eth = BigDecimal.new("3832.5432")
+      @btc_eth = BigDecimal("3832.5432")
       @exchange = "Bitstamp"
     end
 
@@ -97,7 +97,7 @@ RSpec.describe CurrencyRate::Fetcher do
 
     context 'when first exchange has "to" currency as an anchor' do
       before do
-        allow(@storage_double).to receive(:read).with(@fiat_exchanges.first).and_return({ "anchor" => "TRY", "EUR" => (BigDecimal.new(1) / @eur_try).round(16) })
+        allow(@storage_double).to receive(:read).with(@fiat_exchanges.first).and_return({ "anchor" => "TRY", "EUR" => (BigDecimal(1) / @eur_try).round(16) })
       end
 
       it "returns reversed to anchor rate" do

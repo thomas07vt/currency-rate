@@ -16,7 +16,7 @@ module CurrencyRate
           CurrencyRate.logger.error("Forge exchange returned error")
           return nil
         end
-        rates[rate["symbol"].sub(self.class::ANCHOR_CURRENCY, "")] = BigDecimal.new(rate["price"].to_s)
+        rates[rate["symbol"].sub(self.class::ANCHOR_CURRENCY, "")] = BigDecimal(rate["price"].to_s)
       end
       rates
     end

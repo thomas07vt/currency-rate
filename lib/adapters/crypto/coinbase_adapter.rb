@@ -21,7 +21,7 @@ module CurrencyRate
     def normalize(response)
       return nil unless super
       response["data"]["rates"].reduce({ "anchor" => ANCHOR_CURRENCY }) do |result, (currency, rate)|
-        result[currency] = BigDecimal.new(rate.to_s)
+        result[currency] = BigDecimal(rate.to_s)
         result
       end
     end

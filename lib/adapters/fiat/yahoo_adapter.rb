@@ -26,7 +26,7 @@ module CurrencyRate
       return nil unless super
       rates = { "anchor" => self.class::ANCHOR_CURRENCY }
       data["query"]["results"]["rate"].each do |rate|
-        rates[rate["Name"].split("/")[1]] = BigDecimal.new(rate["Rate"].to_s)
+        rates[rate["Name"].split("/")[1]] = BigDecimal(rate["Rate"].to_s)
       end
       rates
     end

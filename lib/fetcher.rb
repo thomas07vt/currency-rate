@@ -25,7 +25,7 @@ module CurrencyRate
 
       if to != "USD"
         usd_fiat = fetch_fiat("USD", to)
-        return BigDecimal.new(rates["USD"] * usd_fiat) if usd_fiat && rates["USD"]
+        return BigDecimal(rates["USD"] * usd_fiat) if usd_fiat && rates["USD"]
       end
       nil
     end
@@ -57,9 +57,9 @@ module CurrencyRate
       def calculate_rate(rates, from, to)
         anchor = rates.delete("anchor")
 
-        return BigDecimal.new(rates[to])               if anchor == from && rates[to]
-        return BigDecimal.new(1 / rates[from])         if anchor == to && rates[from]
-        return BigDecimal.new(rates[to] / rates[from]) if rates[from] && rates[to]
+        return BigDecimal(rates[to])               if anchor == from && rates[to]
+        return BigDecimal(1 / rates[from])         if anchor == to && rates[from]
+        return BigDecimal(rates[to] / rates[from]) if rates[from] && rates[to]
 
         CurrencyRate.logger.warn("Fetcher: rate for #{from}_#{to} not found.")
         nil

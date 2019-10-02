@@ -20,7 +20,7 @@ module CurrencyRate
     def normalize(data)
       return nil unless super
       data.reject { |rate| rate["code"] == ANCHOR_CURRENCY }.reduce({ "anchor" => ANCHOR_CURRENCY }) do |result, rate|
-        result["#{rate['code'].upcase}"] = BigDecimal.new(rate["rate"].to_s)
+        result["#{rate['code'].upcase}"] = BigDecimal(rate["rate"].to_s)
         result
       end
     end

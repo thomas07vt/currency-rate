@@ -4,7 +4,7 @@ module CurrencyRate
 
     def normalize(data)
       return nil unless super
-      { "BTC_CNY" => BigDecimal.new(data["ticker"]["last"].to_s) }
+      { "BTC_CNY" => BigDecimal(data["ticker"]["last"].to_s) }
     end
 
   end

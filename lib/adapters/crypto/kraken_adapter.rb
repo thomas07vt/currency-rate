@@ -29,9 +29,9 @@ module CurrencyRate
         key = ta(pair.sub(ta(ANCHOR_CURRENCY), ""))
 
         if key == "USD"
-          result[key] = BigDecimal.new(value["c"].first.to_s)
+          result[key] = BigDecimal(value["c"].first.to_s)
         else
-          result[key] = 1 / BigDecimal.new(value["c"].first.to_s)
+          result[key] = 1 / BigDecimal(value["c"].first.to_s)
         end
         result
       end

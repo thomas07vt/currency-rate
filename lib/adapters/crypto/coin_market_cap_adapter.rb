@@ -20,9 +20,9 @@ module CurrencyRate
       return nil unless super
       data["data"].each_with_object({ "anchor" => ANCHOR_CURRENCY }) do |payload, result|
         if payload["symbol"] == ANCHOR_CURRENCY
-          result["USD"] = BigDecimal.new(payload["quote"]["USD"]["price"].to_s)
+          result["USD"] = BigDecimal(payload["quote"]["USD"]["price"].to_s)
         else
-          result[payload["symbol"]] = result["USD"] / BigDecimal.new(payload["quote"]["USD"]["price"].to_s)
+          result[payload["symbol"]] = result["USD"] / BigDecimal(payload["quote"]["USD"]["price"].to_s)
         end
       end
     end

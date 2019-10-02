@@ -13,9 +13,9 @@ module CurrencyRate
       return nil unless super
       data.reduce({ "anchor" => ANCHOR_CURRENCY }) do |result, (key, value)|
         if key == "USD"
-          result[key] =  BigDecimal.new(value["last"].to_s)
+          result[key] =  BigDecimal(value["last"].to_s)
         else
-          result[key] =  1 / BigDecimal.new(value["last"].to_s)
+          result[key] =  1 / BigDecimal(value["last"].to_s)
         end
 
         result

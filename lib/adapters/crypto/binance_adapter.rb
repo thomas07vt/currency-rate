@@ -23,15 +23,15 @@ module CurrencyRate
       return nil unless super
       binance_result = data["Binance"].reduce({ "anchor" => ANCHOR_CURRENCY }) do |result, hash|
         if hash["symbol"].index(ANCHOR_CURRENCY) == 0
-          result[hash["symbol"].sub(ANCHOR_CURRENCY, "")] = BigDecimal.new(hash["price"].to_s)
+          result[hash["symbol"].sub(ANCHOR_CURRENCY, "")] = BigDecimal(hash["price"].to_s)
         elsif hash["symbol"].index(ANCHOR_CURRENCY) == 3
-          result[hash["symbol"].sub(ANCHOR_CURRENCY, "")] = 1 / BigDecimal.new(hash["price"].to_s)
+          result[hash["symbol"].sub(ANCHOR_CURRENCY, "")] = 1 / BigDecimal(hash["price"].to_s)
         end
         result
       end
 
       blockchain_result = data["Blockchain"].reduce({}) do |result, (key, value)|
-        result[key] = BigDecimal.new(value["last"].to_s)
+        result[key] = BigDecimal(value["last"].to_s)
         result
       end
 

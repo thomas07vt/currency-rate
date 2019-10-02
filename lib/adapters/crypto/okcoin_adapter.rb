@@ -10,7 +10,7 @@ module CurrencyRate
     def normalize(data)
       return nil unless super
       data.reduce({}) do |result, (pair, value)|
-        result[pair] = BigDecimal.new(value["ticker"]["last"].to_s)
+        result[pair] = BigDecimal(value["ticker"]["last"].to_s)
         result
       end
     end

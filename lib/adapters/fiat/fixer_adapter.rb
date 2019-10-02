@@ -9,7 +9,7 @@ module CurrencyRate
       return nil unless super
       rates = { "anchor" => ANCHOR_CURRENCY }
       data["rates"].each do |k, v|
-        rates[k] = BigDecimal.new(v.to_s)
+        rates[k] = BigDecimal(v.to_s)
       end
       rates
     end

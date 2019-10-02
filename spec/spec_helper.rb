@@ -12,7 +12,7 @@ end
 
 def normalized_data_for(name)
   floating = YAML.load_file File.join(CurrencyRate.root, "spec/fixtures/adapters/normalized/#{name}_rates.yml")
-  floating.each { |k, v| floating[k] = BigDecimal.new(v.to_s) if k != "anchor" }
+  floating.each { |k, v| floating[k] = BigDecimal(v.to_s) if k != "anchor" }
 end
 
 def data_for(name)

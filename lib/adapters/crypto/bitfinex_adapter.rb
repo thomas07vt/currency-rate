@@ -27,9 +27,9 @@ module CurrencyRate
         key = ASSET_MAP[key] || key
 
         if pair_name.index(ANCHOR_CURRENCY) == 0
-          result[key] = BigDecimal.new(pair_info[7].to_s)
+          result[key] = BigDecimal(pair_info[7].to_s)
         elsif pair_name.index(ANCHOR_CURRENCY) == 3
-          result[key] = 1 / BigDecimal.new(pair_info[7].to_s)
+          result[key] = 1 / BigDecimal(pair_info[7].to_s)
         end
 
         result

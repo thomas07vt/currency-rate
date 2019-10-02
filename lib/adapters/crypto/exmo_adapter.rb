@@ -15,9 +15,9 @@ module CurrencyRate
       return nil unless super
       data.reduce({ "anchor" => ANCHOR_CURRENCY }) do |result, (key, value)|
         if key.split("_")[0] == ANCHOR_CURRENCY
-          result[key.sub("#{self.class::ANCHOR_CURRENCY}_", "")] = BigDecimal.new(value["avg"].to_s)
+          result[key.sub("#{self.class::ANCHOR_CURRENCY}_", "")] = BigDecimal(value["avg"].to_s)
         elsif key.split("_")[1] == ANCHOR_CURRENCY
-          result[key.sub("_#{self.class::ANCHOR_CURRENCY}", "")] = 1 / BigDecimal.new(value["avg"].to_s)
+          result[key.sub("_#{self.class::ANCHOR_CURRENCY}", "")] = 1 / BigDecimal(value["avg"].to_s)
         end
         result
       end
